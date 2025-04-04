@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Student Dashboard{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
+    <h1 class="text-2xl font-bold text-blue-600 mb-6">Student Dashboard</h1>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-blue-50 p-4 rounded-lg">
+            <h2 class="text-xl font-semibold mb-4">Profile Information</h2>
+            <div class="space-y-2">
+                <p><span class="font-medium">Name:</span> {{ student.user.get_full_name }}</p>
+                <p><span class="font-medium">Enrollment:</span> {{ student.enrollment_number }}</p>
+                <p><span class="font-medium">Department:</span> {{ student.department }}</p>
+                <p><span class="font-medium">Semester:</span> {{ student.semester }}</p>
+                <p><span class="font-medium">CGPA:</span> {{ student.cgpa }}</p>
+            </div>
+            <a href="#" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+                Edit Profile
+            </a>
+        </div>
+
+        <div class="bg-green-50 p-4 rounded-lg">
+            <h2 class="text-xl font-semibold mb-4">Placement Status</h2>
+            <div class="space-y-4">
+                <div>
+                    <h3 class="font-medium">Resume</h3>
+                    {% if student.resume %}
+                        <a href="{{ student.resume.url }}" target="_blank" class="text-blue-600 hover:underline">
+                            <i class="fas fa-file-pdf mr-1"></i> View Resume
+                        </a>
+                    {% else %}
+                        <p class="text-gray-500">No resume uploaded</p>
+                    {% endif %}
+                </div>
+                <div>
+                    <h3 class="font-medium">Applications</h3>
+                    <p class="text-gray-600">You have applied to 0 jobs</p>
+                </div>
+            </div>
+            <a href="#" class="mt-4 inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
+                View Available Jobs
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
